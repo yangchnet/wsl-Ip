@@ -11,7 +11,6 @@ import (
 
 const (
 	host_file = "/mnt/c/Windows/System32/drivers/etc/hosts"
-	// host_file = "./hosts"
 )
 
 func exec_shell(s string) (string, error) {
@@ -80,6 +79,9 @@ func mdyHosts() error {
 	modified_hosts := strings.Join(host_slice, "\n")
 
 	err = ioutil.WriteFile(host_file, []byte(modified_hosts), 0644)
+	if err != nil {
+		fmt.Println(err)
+	}
 	fmt.Printf("已配置DNS：%s", proxy_str)
 	return err
 }
